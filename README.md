@@ -1,4 +1,3 @@
-# bash-DBengine
 # Overview
 The project aims to develop a DBMS using bash script that provide the basic operations such as:
 1. CRUD operations on databases
@@ -17,10 +16,13 @@ The project should provide a GUI using Zenity for interfacing with the engine
 # Features
 ## Database Level features
 ### Create database
-- [ ] create new folder with database name
-- [ ] check that a database with the same name doesn’t exist.
-- [ ] check that database name is valid (doesn’t contain / or . at the beginning for example)
+- [x] create new folder with database name
+- [x] check that a database with the same name doesn’t exist.
+- [x] check that database name start with a letter or `_` and doesn’t contain `.`, `/`, or spaces
+- [x] check that folder was created without errors (this will catch other special characters that are not allowed in folder naming)
 - [ ] advanced - check that user has permission to create a database
+
+Now a user can create a database. The engine checks that no database already exist with the same name, in addition to enforcing that name start with a letter or underscore and doesn’t contain any special characters except `_` and `-`
 ### Select database
 - [ ] change directory to database folder
 - [ ] check that a database with the same name exist
