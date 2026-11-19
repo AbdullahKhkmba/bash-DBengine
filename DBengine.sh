@@ -1,5 +1,5 @@
 #! /usr/bin/bash
-shopt extglob
+shopt -s extglob
 
 DBs_path="/home/abdullahayman/bash-DBengine/DBs"
 
@@ -32,25 +32,38 @@ do
 				fi
 			fi
 			;;
-		"SelectDB")
+			
+		"DeleteDB")
 			read -p "Enter database name: " DBname
-			path=$DBs_path/$DBname
-			if [[ -d $path ]]
+			DB_path=$DBs_path/$DBname
+			if [[ -d $DB_path && $DBname != */* ]]    # check that DBname is not reaching inside any database
 			then 
-				cd $path
-				echo "You are now using " $DBname " database"
+					rm -r $DB_path 2> /dev/null
+                    rtrn=$(echo $?)
+					if [[ rtrn -eq 1 ]]         
+					then 
+						echo "Was not able to delete database"
+					else
+						echo "Database was deleted successfully"
+					fi
 			else 
-				mkdir $path
-				echo "Database was created successfully"
+				echo "No such database exist"
 			fi
 			;;
-		"DeleteDB")
-			read -p "Enter database name: " $DBname
-			path=$DBs_path/$DBname
-			if [[ -d $path ]]
+			
+		"SelectDB")
+			read -p "Enter database name: " DBname
+			DB_path=$DBs_path/$DBname
+			if [[ -d $DB_path ]]
 			then 
-				rm -r $path
-				echo "Database was deleted successfully"
+					cd $DB_path 2> /dev/null
+                    rtrn=$(echo $?)
+					if [[ rtrn -eq 1 ]]         
+					then 
+						echo "Was not able to select database"
+					else
+						echo "Database was select successfully"
+					fi
 			else 
 				echo "No such database exist"
 			fi

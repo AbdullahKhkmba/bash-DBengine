@@ -18,21 +18,23 @@ The project should provide a GUI using Zenity for interfacing with the engine
 ### Create database
 - [x] create new folder with database name
 - [x] check that a database with the same name doesn’t exist.
-- [x] check that database name start with a letter or `_` and doesn’t contain `.`, `/`, or spaces
+- [x] check that database name start with a letter or `_`
+- [x] check that no special character in the middle exist except `-` and `_`
 - [x] check that folder was created without errors (this will catch other special characters that are not allowed in folder naming)
 - [ ] advanced - check that user has permission to create a database
 
 Now a user can create a database. The engine checks that no database already exist with the same name, in addition to enforcing that name start with a letter or underscore and doesn’t contain any special characters except `_` and `-`
-### Select database
-- [ ] change directory to database folder
-- [ ] check that a database with the same name exist
-- [ ] advanced - check that user has permission to select a database
 ### Delete database
-- [ ] delete database folder
-- [ ] check that a database with the same name exist
+- [x] delete database folder
+- [x] check that a database with the same name exist
+- [x] check that database name doesn’t contain `/` because this way a user can enter for example `database/table` and be able to delete a table from the database
 - [ ] advanced - check that user has permission to delete database
+### Select database
+- [x] change directory to database folder
+- [x] check that a database with the same name exist
+- [ ] advanced - check that user has permission to select a database
 ### Exit database engine
-- [ ] exit from script when “exit” is written
+- [x] exit from script when “exit” is written
 ## Tables Level features
 ### Create table
 - [ ] create file name with specified table name
