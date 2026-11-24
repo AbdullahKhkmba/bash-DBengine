@@ -1,8 +1,8 @@
 read -p "Enter database name: " dbname
 
-path=$dbs_path/$dbname
+db_path=$dbs_path/$dbname
 
-if [[ -d $path ]]             # check that database exist
+if [[ -d $db_path ]]             # check that database exist
 then 
 	echo "Database already exist"
 else
@@ -10,7 +10,7 @@ else
 	# Only underscore and hyphine are allowed in the middle
 	if [[ $dbname = [a-zA-Z_]*([a-zA-Z0-9_-]) ]]
 	then 
-		mkdir $path 2> /dev/null     # don't show error to DB user
+		mkdir $db_path 2> /dev/null     # don't show error to DB user
 		rtrn=$(echo $?)
 		if [[ rtrn -eq 1 ]]          # check for errors
 		then 

@@ -4,21 +4,24 @@ shopt -s extglob
 export dbs_path="/home/abdullahayman/bash-DBengine/databases"
 export base="/home/abdullahayman/bash-DBengine"
 
-select option in "CreateDB" "SelectDB" "DropDB" "ShowDBs" "exit"
+PS3="Main menu> "
+select option in "Create database" "Select database" "Drop database" "Show databases" "exit"
 do	
 	case $option in
-		"CreateDB")
+		
+		"Create database")
 			$base/features/create_database.sh
 			;;
 			
-		"DropDB")
+		"Drop database")
 			$base/features/drop_database.sh
 			;;
 			
-		"SelectDB")
+		"Select database")
 			$base/features/select_database.sh
+			REPLY=
 			;;
-		"ShowDBs")
+		"Show databases")
 			ls -1 $dbs_path
 			;;
 		"exit")
