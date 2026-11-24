@@ -13,6 +13,22 @@ The project should provide a GUI using Zenity for interfacing with the engine
 5. Open a pull request
 6. Review
 7. Merge branch
+# Project Structure
+```
+bash_DBengine/
+│
+├── main.sh
+│
+├── README.md
+│
+├── databases/
+│
+├── features/
+│ ├── create_database.sh
+│ ├── drop_database.sh
+│ ├── select_database.sh
+│ └── show_databases.sh
+```
 # Features
 ## Database Level features
 ### Create database
