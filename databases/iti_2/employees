@@ -1,0 +1,3 @@
+emp_id:PRIMARY_KEY:char:NOT_NULL::
+emp_name::char:NOT_NULL::
+department::char:NULL::

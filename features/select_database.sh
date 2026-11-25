@@ -16,7 +16,8 @@ then
 		do	
 			case $option in
 				"Create table")
-					# TODO
+					source $HOME/bash-DBengine/features/create_table.sh
+					create_table
 					;;
 					
 				"Drop table")

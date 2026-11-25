@@ -1,0 +1,5 @@
+student_id:PRIMARY_KEY:char:NOT_NULL::
+student_name::char:NULL::
+track::char:NULL::
+student_id:PRIMARY_KEY:int:NOT_NULL::
+student_name::char:NOT_NULL::
