@@ -1,0 +1,2 @@
+dept_id:PRIMARY_KEY:INT:NOT_NULL::
+dept_name::CHAR:NOT_NULL::
