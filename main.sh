@@ -31,4 +31,5 @@ do
 			echo "Not a valid option"
 			;;
 	esac
+	REPLY=
 done

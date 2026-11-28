@@ -148,7 +148,7 @@ create_table() {
 
         while true; do
 
-            read -r -p "Enter datatype for '$col_name' (int, char): " data_type
+            read -r -p "Enter datatype for '$col_name' (INT, CHAR): " data_type
             
             
 	    # convert data_type to uppercase
@@ -291,6 +291,9 @@ create_table() {
 
     local metadata_file="$db_path/${table_name}_metadata"
     local temp_file
+    
+    # create table's data file
+    touch "$db_path/${table_name}"
 
     # Prevent overwriting an existing table
     if [[ -e "$metadata_file" ]]; then

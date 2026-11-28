@@ -1,0 +1,4 @@
+emp_id:PRIMARY_KEY:INT:NOT_NULL::
+emp_name::CHAR:NOT_NULL::
+emp_salary::INT:NOT_NULL::
+dept_id::INT:NULL::

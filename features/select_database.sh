@@ -14,14 +14,17 @@ then
 		echo "Database was select successfully"
 		
 		PS3="DB menu> "
-		select option in "Show current database" "Create table" "Drop table" "exit"
+		select option in "Show current database" "Create table" "Drop table" "Insert into table" "exit"
 		do	
 			case $option in
 				"Create table")
-					source $HOME/bash-DBengine/features/create_table.sh
+					source $base/features/create_table.sh
 					create_table
 					;;
 					
+				"Insert into table")
+					$base/features/insert_into_table.sh
+					;;	
 				"Drop table")
 					# TODO
 					;;
@@ -36,6 +39,7 @@ then
 					echo "Not a valid option"
 					;;
 			esac
+			REPLY=
 		done
 	fi
 else 
