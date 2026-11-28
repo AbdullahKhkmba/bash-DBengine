@@ -1,0 +1,3 @@
+employee_id:employees:int:pk:
+first_name:employees:char::
+last_name:employees:char::

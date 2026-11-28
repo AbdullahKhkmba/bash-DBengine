@@ -1,5 +1,6 @@
-read -p "Enter database name: " dbname
+export dbname
 
+read -p "Enter database name: " dbname
 db_path=$dbs_path/$dbname
 
 if [[ -d $db_path ]]             # check that database exist
@@ -17,6 +18,7 @@ else
 			echo "Was not able to create database"
 		else
 			echo "Database was created successfully"
+			touch "$db_path/${dbname}_metadata"
 		fi
 		
 	else

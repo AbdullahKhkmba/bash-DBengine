@@ -1,3 +1,5 @@
+export dbname
+
 read -p "Enter database name: " dbname
 export db_path=$dbs_path/$dbname
 

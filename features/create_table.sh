@@ -12,7 +12,7 @@ create_table() {
         return 1
     fi
 
-    echo "Selected database: $db_path"
+    echo "Selected database: $dbname"
 
     # ==========================================
     # 2. Get and validate table name
@@ -71,19 +71,15 @@ create_table() {
             read -r -p "Enter column name: " col_name
 
             # Handle the special name "exit"
-            if [[ "$col_name" == "exit" ]]; then
+            if [[ "$col_name" == "0" ]]; then
 
                 while true; do
 
-                    echo
-                    echo "You entered 'exit'."
-                    echo "Press 0 to exit the table."
-                    echo "Press 1 to add a column named 'exit'."
-
-                    read -r -p "Your choice: " exit_choice
-
+                    read -r -p "Are you sure you want to exit? (yes/no): " exit_choice
+		
+		    exit_choice=${exit_choice,,}
                     case "$exit_choice" in
-                        0)
+                        yes|y)
                             if [[ ${#col_names[@]} -eq 0 ]]; then
                                 echo "Error: A table must have at least one column."
                                 break
@@ -93,7 +89,7 @@ create_table() {
                             break
                             ;;
 
-                        1)
+                        no|n)
                             break
                             ;;
 
@@ -152,9 +148,12 @@ create_table() {
 
         while true; do
 
-            read -r -p "Enter datatype for '$col_name': " data_type
-
-            if [[ -z "$data_type" || "$data_type" == *:* || "$data_type" == *$'\n'* ]]; then
+            read -r -p "Enter datatype for '$col_name' (int, char): " data_type
+            
+            
+	    # convert data_type to uppercase
+	    data_type=${data_type^^}
+            if [[ $data_type != "CHAR" && $data_type != "INT" ]]; then
                 echo "Error: Invalid datatype."
             else
                 break
@@ -290,11 +289,11 @@ create_table() {
     # 10. Write table information to file
     # ==========================================
 
-    local table_file="$db_path/$table_name"
+    local metadata_file="$db_path/${table_name}_metadata"
     local temp_file
 
     # Prevent overwriting an existing table
-    if [[ -e "$table_file" ]]; then
+    if [[ -e "$metadata_file" ]]; then
         echo "Error: Table already exists."
         return 1
     fi
@@ -314,7 +313,7 @@ create_table() {
 
     done
 
-    if ! mv -- "$temp_file" "$table_file"; then
+    if ! mv -- "$temp_file" "$metadata_file" 2> /dev/zero; then
         rm -f -- "$temp_file"
         echo "Error: Could not save table."
         return 1
@@ -327,7 +326,7 @@ create_table() {
     echo
     echo "===================================="
     echo "Table created successfully!"
-    echo "Database : $db_path"
+    echo "Database : $dbname"
     echo "Table    : $table_name"
     echo "Columns  : ${#col_names[@]}"
     echo "===================================="
